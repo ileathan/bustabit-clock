@@ -11,6 +11,8 @@ var still_wagered = 0;
 var buffer; // remove dups
 
 engine.on('game_crash', function() {
+  engine.chat(parseInt(cashed_total / 100) + " bits cashed out  [" + parseInt(100 - (still_wagered / round_total) * 100) + "%].")
+
   console.log("Total cashed out: " + parseInt(cashed_total / 100) + "  [" + parseInt(100 - (still_wagered / round_total) * 100) + "%].") 
   round_total = 0;
 });

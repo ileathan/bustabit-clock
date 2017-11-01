@@ -1,5 +1,5 @@
 # bustabit-clock
-Simple clock to show in real time whats being wagered
+Simple clock to show in real time whats being wagered (in satoshi's)
 
 **Copy paste the bellow into bustabit custom script area, then open the debug console and watch**
 

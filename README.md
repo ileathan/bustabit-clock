@@ -11,7 +11,7 @@ var still_wagered = 0;
 var buffer; // remove dups
 
 engine.on('game_crash', function() {
-  console.log("Total cashed out: " + parseInt(cashed_total / 100) + "  [" + parseInt((cashed_total / round_total) * 100) + "%].") 
+  console.log("Total cashed out: " + parseInt(cashed_total / 100) + "  [" + parseInt(100 - (still_wagered / round_total) * 100) + "%].") 
   round_total = 0;
 });
 engine.on('game_started', function(users) { 
@@ -24,7 +24,8 @@ engine.on('game_started', function(users) {
 })
 engine.on('cashed_out', function(user) { 
   let userCashed = usersObj[user.username] * (user.stopped_at - 100) / 100;
-  still_wagered -= userCashed;
+  //still_wagered -= userCashed;
+  still_wagered -= usersObj[user.username];
   cashed_total += userCashed;
   let left = parseInt(still_wagered / 100);
   if(buffer === left) return;

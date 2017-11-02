@@ -5,10 +5,10 @@ Simple clock to show in real time whats being wagered (denominated in bits)
 
 ```javascript
 var round_total = 0; 
-var usersObj = {};
-var cashed = 0;
+var cashed_total = 0; 
 var still_wagered = 0;
 var still_wagered_buff; // remove dups
+const usersObj = {}; // the key/hash is the username, the value is the bet amount. { username: bet }.
 
 function satsToBits(satoshis) { return parseInt(satoshis / 100); }
 

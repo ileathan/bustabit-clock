@@ -8,7 +8,9 @@ var round_total = 0;
 var usersObj = {};
 var cashed_total = 0;
 var still_wagered = 0;
-var buffer; // remove dups
+var bits_left; // remove dups
+
+function satsToBits(satoshis) { return parseInt(satoshis / 100) }
 
 engine.on('game_crash', function() {
   engine.chat(parseInt(cashed_total / 100) + " bits cashed out  [" + parseInt(100 - (still_wagered / round_total) * 100) + "%].")
@@ -20,18 +22,17 @@ engine.on('game_started', function(users) {
   cashed_total = 0;
   for(name in users) {
     round_total += users[name].bet;
-    usersObj[name] = users[name].bet;
+    usersObj[name] = satsToBits(users[name].bet);
   }
-  still_wagered = round_total;
+  still_wagered = satsToBits(round_total);
 })
 engine.on('cashed_out', function(user) { 
   let userCashed = usersObj[user.username] * (user.stopped_at - 100) / 100;
-  //still_wagered -= userCashed;
   still_wagered -= usersObj[user.username];
   cashed_total += userCashed;
-  let left = parseInt(still_wagered / 100);
-  if(buffer === left) return;
-  else buffer = left;
+  // Here we keep track of the last number, and if its the same we dont print it out (ignore duplicates)
+  if(bits_left === still_wagered) return;
+  else bits_left = still_wagered;
   console.log(left + "  [" + parseInt((still_wagered / round_total) * 100) + "%]");
 })
 ```

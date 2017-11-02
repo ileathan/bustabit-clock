@@ -15,7 +15,7 @@ function satsToBits(satoshis) { return parseInt(satoshis / 100); }
 engine.on('game_crash', function() {
   let percent_cashed = parseInt(100 - (still_wagered / round_total) * 100);
   engine.chat(cashed_total + " bits cashed out  [" + percent_cashed + "%].");
-  console.log("Total cashed out: " + cashed_total + "  [" + percent_cashed + "%].") ;
+  console.log("Total cashed out: " + cashed_total + "  [" + percent_cashed + "%].");
   round_total = 0;
 });
 engine.on('game_started', function(users) { 

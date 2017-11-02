@@ -1,7 +1,7 @@
 # bustabit-clock
-Simple clock to show in real time whats being wagered (denominated in bits)
+Simple clock to show in real time whats being wagered (denominated in bits).
 
-**Copy paste the bellow into bustabit custom script area, then open the debug console and watch**
+**Copy paste the bellow into bustabit custom script area, then open the debug console and watch.**
 
 ```javascript
 var round_total = 0; 

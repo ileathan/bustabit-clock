@@ -20,7 +20,7 @@ engine.on('game_crash', function() {
 });
 engine.on('game_started', function(users) { 
   cashed_total = 0;
-  for(name in users) {
+  for(let name in users) {
     round_total += satsToBits(users[name].bet);
     usersObj[name] = satsToBits(users[name].bet);
   }
